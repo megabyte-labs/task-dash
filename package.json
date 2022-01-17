@@ -1,5 +1,58 @@
 {
+  "private": false,
+  "name": "go-cli-template",
+  "version": "0.0.1",
+  "description": "A starting template for Go CLI projects",
+  "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
+  "homepage": "https://megabyte.space",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ProfessorManhattan/go-cli-template.git"
+  },
+  "bugs": {
+    "email": "help@megabyte.space",
+    "url": "https://gitlab.com/megabyte-labs/templates/go-cli/-/issues"
+  },
+  "type": "module",
+  "scripts": {
+    "help": "task --list",
+    "prepare": "task common:husky",
+    "repair": "bash <(curl -sS https://install.doctor/repair)",
+    "start": "bash .config/start.sh"
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-emoji-conventional"
+    }
+  },
+  "dependencies": {},
+  "optionalDependencies": {},
+  "devDependencies": {
+    "@washingtondc/development": "^1.0.2",
+    "@washingtondc/prettier": "^1.0.0",
+    "@washingtondc/release": "^0.0.2",
+    "eslint-config-strict-mode": "^1.0.0",
+    "sleekfast": "^0.0.1"
+  },
+  "keywords": [
+    "automation",
+    "cli",
+    "go",
+    "go-lang",
+    "golang",
+    "mblabs",
+    "megabytelabs",
+    "professormanhattan",
+    "terminal",
+    "washingtondc"
+  ],
+  "engines": {
+    "node": ">=14.18.0"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "blueprint": {
     "customPackageName": "go-cli-template",
     "description": "A starting template for Go CLI projects",
@@ -12,34 +65,16 @@
     },
     "slug": "go-cli-template",
     "subgroup": "cli",
-    "title": "Go CLI Starting Template"
-  },
-  "bugs": {
-    "email": "help@megabyte.space",
-    "url": "https://gitlab.com/megabyte-labs/templates/go-cli/-/issues"
+    "title": "Go CLI Starting Template",
+    "github_id": "R_kgDOGr8gew",
+    "gitlab_project_id": "29528131",
+    "gitlab_group_id": "11579735"
   },
   "commitlint": {
     "extends": [
       "@commitlint/config-conventional"
     ],
     "helpUrl": "https://megabyte.space/docs/contributing/commits"
-  },
-  "config": {
-    "commitizen": {
-      "path": "node_modules/cz-emoji-conventional"
-    }
-  },
-  "dependencies": {},
-  "description": "A starting template for Go CLI projects",
-  "devDependencies": {
-    "@washingtondc/development": "^1.0.2",
-    "@washingtondc/prettier": "^1.0.0",
-    "@washingtondc/release": "^0.0.2",
-    "eslint-config-strict-mode": "^1.0.0",
-    "sleekfast": "^0.0.1"
-  },
-  "engines": {
-    "node": ">=14.18.0"
   },
   "eslintConfig": {
     "extends": "eslint-config-strict-mode"
@@ -54,20 +89,6 @@
       "url": "https://www.patreon.com/ProfessorManhattan"
     }
   ],
-  "homepage": "https://megabyte.space",
-  "keywords": [
-    "automation",
-    "cli",
-    "go",
-    "go-lang",
-    "golang",
-    "mblabs",
-    "megabytelabs",
-    "professormanhattan",
-    "terminal",
-    "washingtondc"
-  ],
-  "license": "MIT",
   "lint-staged": {
     "**/!(logo).(jpg|png)": [
       "task image:compress --"
@@ -104,7 +125,6 @@
       "task image:compress --"
     ]
   },
-  "name": "go-cli-template",
   "ntl": {
     "descriptions": {
       "help": "Display a list of tasks that can be run via the Taskfile.yml",
@@ -113,29 +133,12 @@
       "start": "Entrypoint for new developers that installs requirements and then runs 'task start'"
     }
   },
-  "optionalDependencies": {},
   "prettier": "@washingtondc/prettier",
-  "private": false,
-  "publishConfig": {
-    "access": "public"
-  },
   "release": {
     "branches": [
       "master",
       "next"
     ],
     "extends": "@washingtondc/release"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/ProfessorManhattan/go-cli-template.git"
-  },
-  "scripts": {
-    "help": "task --list",
-    "prepare": "task common:husky",
-    "repair": "bash <(curl -sS https://install.doctor/repair)",
-    "start": "bash .config/start.sh"
-  },
-  "type": "module",
-  "version": "0.0.1"
+  }
 }
