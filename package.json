@@ -56,6 +56,9 @@
   "blueprint": {
     "customPackageName": "go-cli-template",
     "description": "A starting template for Go CLI projects",
+    "github_id": "R_kgDOGr8gew",
+    "gitlab_group_id": "11579735",
+    "gitlab_project_id": "29528131",
     "group": "go",
     "name": "Go CLI",
     "overview": "This project is a boilerplate for Go CLI projects. It includes common files that are shared throughout the Megabyte Labs ecosystem. It also includes a basic project structure. It does not attempt to dictate project structure - it just takes care of all the meta-tasks like configuring CI, linters, and build tools.",
@@ -65,10 +68,7 @@
     },
     "slug": "go-cli-template",
     "subgroup": "cli",
-    "title": "Go CLI Starting Template",
-    "github_id": "R_kgDOGr8gew",
-    "gitlab_project_id": "29528131",
-    "gitlab_group_id": "11579735"
+    "title": "Go CLI Starting Template"
   },
   "commitlint": {
     "extends": [
