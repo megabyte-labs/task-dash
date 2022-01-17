@@ -102,7 +102,10 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 You can install the CLI by compiling it from the source as long as you have a recent version of Go installed:
 
 ```
-Add go commands here
+git clone https://github.com/ProfessorManhattan/go-cli-template.git
+cd {{#withLast (split repository.github "/")}}this}}{{/withLast
+.build_command
+sudo mv build_command_output /usr/local/bin  # Or move it anywhere else in your PATH
 ```
 
 After you compile the program, you should then move the binary file to a location that is in your `PATH`.
@@ -125,7 +128,9 @@ If you trust us (and you should not.. trust.. anybody.. EVER), then you can also
 
 All of the usage instructions can be found by running `binName --help`. After running the command, you should be greeted with the following output:
 
+```
 help_menu_output
+```
 
 ### Man Page
 

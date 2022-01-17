@@ -2,7 +2,9 @@
 
 All of the usage instructions can be found by running `{{ binName }} --help`. After running the command, you should be greeted with the following output:
 
+```
 {{ help_menu_output }}
+```
 
 ### Man Page
 
