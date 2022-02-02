@@ -43,10 +43,9 @@ archives:
       - goos: windows
         format: zip
     replacements:
-      amd64: 64-bit
-      386: 32-bit
-      darwin: macOS
-      linux: Linux
+      amd64: x86_64
+      386: x86_32
+      darwin: macos
 
 universal_binaries:
   - replace: true
@@ -78,10 +77,9 @@ nfpms:
       - jq
       - yq
     replacements:
-      amd64: 64-bit
-      386: 32-bit
-      darwin: macOS
-      linux: Linux
+      amd64: x86_64
+      386: x86_32
+      darwin: macos
 
 snapcrafts:
   - id: default
@@ -90,10 +88,9 @@ snapcrafts:
     # yamllint disable-line rule:line-length
     description: 'This project is a boilerplate for Go CLI projects. It includes common files that are shared throughout the Megabyte Labs ecosystem. It also includes a basic project structure. It does not attempt to dictate project structure - it just takes care of all the meta-tasks like configuring CI, linters, and build tools.'
     replacements:
-      amd64: 64-bit
-      386: 32-bit
-      darwin: macOS
-      linux: Linux
+      amd64: x86_64
+      386: x86_32
+      darwin: macos
     confinement: classic
     license: MIT
     extra_files:
