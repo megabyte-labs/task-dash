@@ -104,7 +104,7 @@ env:
 gomod:
   env:
     - GORELEASER_CURRENT_TAG=v0.0.1
-  proxy: 'true'
+  proxy: true
 
 nfpms:
   - description: A starting template for Go CLI projects
