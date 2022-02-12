@@ -19,12 +19,12 @@
     "build": "task go:build",
     "bump": "npm run build && npm version patch --no-commit-hooks --no-git-tag-version --force && npm publish",
     "help": "task --menu",
-    "postinstall": "go-npm install",
+    "postinstall": "go-npm install || true",
     "prepare": "task common:husky",
     "repair": "bash <(curl -sS https://install.doctor/repair)",
     "start": "bash start.sh",
     "test": "task go:test",
-    "preuninstall": "go-npm uninstall"
+    "preuninstall": "go-npm uninstall || true"
   },
   "config": {
     "commitizen": {
@@ -119,7 +119,7 @@
   "goBinary": {
     "name": "",
     "path": "./bin",
-    "url": "https://github.com/ProfessorManhattan/go-cli-template/releases/download/v0.0.1/Go-CLI-version-platform-arch.tar.gz"
+    "url": "https://github.com/ProfessorManhattan/go-cli-template/releases/download/v0.0.1/Go-CLI-0.0.1-{{platform}}-{{arch}}.tar.gz"
   },
   "lint-staged": {
     "**/!(logo).(jpg|png)": [
