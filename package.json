@@ -15,6 +15,7 @@
     "url": "https://gitlab.com/megabyte-labs/templates/go-cli/-/issues"
   },
   "type": "module",
+  "files": [],
   "scripts": {
     "build": "task go:build",
     "bump": "npm run build && npm version patch --no-commit-hooks --no-git-tag-version --force && npm publish",
