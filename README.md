@@ -46,9 +46,9 @@
   </a>
 </div>
 
-> </br><h4 align="center">**subheader_description**</h4></br>
+> </br><h4 align="center">**subheaderDescription**</h4></br>
 
-![terminalizer_title](https://gitlab.com/megabyte-labs/templates/go-cli/-/raw/master/docs/demo.gif)
+<!--TERMINALIZE![terminalizer_title](https://gitlab.com/megabyte-labs/templates/go-cli/-/raw/master/docs/demo.gif)TERMINALIZE-->
 
 <a href="#table-of-contents" style="width:100%"><img style="width:100%" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png" /></a>
 
@@ -104,7 +104,7 @@ You can install the CLI by compiling it from the source as long as you have a re
 ```
 git clone https://github.com/ProfessorManhattan/go-cli-template.git
 cd {{#withLast (split repository.github "/")}}this}}{{/withLast
-.build_command
+build_command
 sudo mv build_command_output /usr/local/bin
 ```
 
