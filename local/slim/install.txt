@@ -120,3 +120,6 @@ install:npm:husky
 install:npm:husky
 install:npm:commitizen
 install:npm:commitlint
+install:npm:husky
+install:npm:commitizen
+install:npm:commitlint
