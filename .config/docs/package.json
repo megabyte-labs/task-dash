@@ -15,14 +15,11 @@
     "url": "https://gitlab.com/megabyte-labs/templates/go-cli/-/issues"
   },
   "type": "module",
-  "files": [],
   "scripts": {
     "build": "bash start.sh && task go:build",
-    "bump": "npm run build && npm version patch --no-commit-hooks --no-git-tag-version --force && npm publish",
     "commit": "bash start.sh && task commit",
     "fix": "bash start.sh && task fix",
     "help": "bash start.sh && task --menu",
-    "postinstall": "go-npm install || true",
     "lint": "bash start.sh && task lint",
     "preload": "bash start.sh && task preload",
     "prepare": "bash start.sh && (test -f Taskfile.yml && task npm:prepare) || true",
@@ -31,7 +28,6 @@
     "repair": "bash <(curl -sS https://install.doctor/repair)",
     "start": "test -z $SKIP_NPM_START && bash start.sh || true",
     "test": "bash start.sh && task go:test",
-    "preuninstall": "go-npm uninstall || true",
     "unpack": "bash start.sh && task npm:bundle:unpack",
     "update": "bash start.sh && task update"
   },
@@ -40,9 +36,7 @@
       "path": "node_modules/git-cz-emoji"
     }
   },
-  "dependencies": {
-    "go-npm": "^0.1.9"
-  },
+  "dependencies": {},
   "optionalDependencies": {},
   "devDependencies": {
     "@commitlint/config-conventional": "latest",
@@ -54,15 +48,9 @@
     "typescript": "^4.5.5"
   },
   "keywords": [
-    "automation",
-    "cli",
-    "go",
-    "go-lang",
-    "golang",
     "mblabs",
     "megabytelabs",
     "professormanhattan",
-    "terminal",
     "washingtondc"
   ],
   "engines": {
@@ -73,21 +61,10 @@
     "access": "public"
   },
   "blueprint": {
-    "customPackageName": "go-cli-template",
-    "description": "A starting template for Go CLI projects",
-    "github_id": "R_kgDOGr8gew",
-    "gitlab_group_id": "11579735",
-    "gitlab_project_id": "29528131",
-    "group": "go",
-    "name": "Go CLI",
-    "overview": "This project is a boilerplate for Go CLI projects. It includes common files that are shared throughout the Megabyte Labs ecosystem. It also includes a basic project structure. It does not attempt to dictate project structure - it just takes care of all the meta-tasks like configuring CI, linters, and build tools.",
     "repository": {
       "github": "https://github.com/ProfessorManhattan/go-cli-template",
       "gitlab": "https://gitlab.com/megabyte-labs/templates/go-cli"
-    },
-    "slug": "go-cli-template",
-    "subgroup": "cli",
-    "title": "Go CLI Starting Template"
+    }
   },
   "changelog": {
     "displayTypes": [
@@ -100,14 +77,13 @@
     "showAuthor": true
   },
   "commitlint": {
-    "extends": [],
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
     "helpUrl": "https://megabyte.space/docs/contributing/commits"
   },
   "eslintConfig": {
-    "extends": "eslint-config-strict-mode",
-    "rules": {
-      "import/no-extraneous-dependencies": "warn"
-    }
+    "extends": "eslint-config-strict-mode"
   },
   "funding": [
     {
@@ -119,22 +95,82 @@
       "url": "https://www.patreon.com/ProfessorManhattan"
     }
   ],
-  "goBinary": {
-    "name": "",
-    "path": "./bin",
-    "url": "https://github.com/ProfessorManhattan/go-cli-template/releases/download/v0.0.1/Go-CLI-0.0.1-{{platform}}-{{arch}}.tar.gz"
+  "lint-staged": {
+    "(Brewfile|composer.lock|Gemfile|Gopkg.lock|Pipfile.lock)": [
+      "task fix:prettier --"
+    ],
+    "**/!(logo).(jpg|png)": [
+      "task image:compress --"
+    ],
+    "**/*": [
+      "task lint:any --"
+    ],
+    "**/*!(template).(json|webapp|webmanifest)": [
+      "task fix:json --"
+    ],
+    "**/*.(bash|cfg|cgi|command|css|env|env.*|handlebars|hbs|html|less|fcgi|java|md|mdx|mjml|php|phtml|properties|reg|scss|tmpl|tmux|tool|tpl|zsh)": [
+      "task fix:prettier --"
+    ],
+    "**/*.(cjs|js|jsx|mjs|ts|tsx)": [
+      "task fix:js --",
+      "task lint:js --"
+    ],
+    "**/*.(yml|yaml)": [
+      "task fix:yaml --",
+      "task lint:yaml --"
+    ],
+    "**/*.go": [
+      "task fix:go --",
+      "task lint:go --"
+    ],
+    "**/*.md": [
+      "task fix:markdown --",
+      "task lint:spelling:markdown --"
+    ],
+    "**/*.php": [
+      "task fix:php --",
+      "task lint:php --"
+    ],
+    "**/*.py": [
+      "task fix:python --",
+      "task lint:python --"
+    ],
+    "**/*.sh": [
+      "task fix:prettier --",
+      "task fix:shell --",
+      "task lint:shell --"
+    ],
+    "**/*.toml": [
+      "task fix:toml --",
+      "task fix:prettier --",
+      "task lint:toml --"
+    ],
+    "**/*.xml": [
+      "task fix:xml --",
+      "task lint:xml --"
+    ],
+    "Dockerfile": [
+      "task fix:prettier --",
+      "task lint:docker --"
+    ],
+    "Vagrantfile": [
+      "task fix:prettier --",
+      "task lint:vagrant"
+    ],
+    "logo.png": [
+      "task image:resize -- 200 200",
+      "task image:compress --"
+    ]
   },
   "ntl": {
     "descriptions": {
       "build": "Builds the project using the build command specified under scripts in package.json",
-      "bump": "Used to quickly build, increase the package.json version, and publish the package",
       "commit": "If unsure, use this task to commit your code so that it adheres to our commit rules",
       "fix": "Run auto-fixing with all available auto-fixers",
       "help": "Display the Bodega Taskfile.yml interactive help menu",
       "lint": "Lint the project with all available linters",
       "preload": "Preload the operating system with commonly used libraries and tools",
       "prepare": "A hook triggered by running npm install that runs logic such as installing pre-commit hooks",
-      "publish": "Publish the software to all supported channels using semantic-release",
       "release": "Publish the software to all supported channels using semantic-release",
       "repair": "Fixes basic issues in projects that are having trouble running basic commands like 'task start'",
       "start": "Entrypoint for new developers that installs requirements and then runs 'task start'",
@@ -146,7 +182,6 @@
   "pnpm": {
     "allowedVersions": {
       "@typescript-eslint/eslint-plugin": "5",
-      "eslint": "8",
       "typescript": "4"
     },
     "neverBuiltDependencies": [
