@@ -45,13 +45,13 @@
   },
   "optionalDependencies": {},
   "devDependencies": {
-    "@commitlint/config-conventional": "latest",
     "eslint-config-strict-mode": "latest",
     "git-cz-emoji": "latest",
-    "handlebars-helpers": "latest",
     "prettier-config-sexy-mode": "latest",
     "semantic-release-config": "latest",
-    "typescript": "^4.5.5"
+    "typescript": "^4.5.5",
+    "@commitlint/config-conventional": "latest",
+    "handlebars-helpers": "latest"
   },
   "keywords": [
     "automation",
@@ -82,7 +82,7 @@
     "name": "Go CLI",
     "overview": "This project is a boilerplate for Go CLI projects. It includes common files that are shared throughout the Megabyte Labs ecosystem. It also includes a basic project structure. It does not attempt to dictate project structure - it just takes care of all the meta-tasks like configuring CI, linters, and build tools.",
     "repository": {
-      "github": "https://github.com/ProfessorManhattan/go-cli-template",
+      "github": "https://github.com/megabyte-labs/go-cli-template",
       "gitlab": "https://gitlab.com/megabyte-labs/templates/go-cli"
     },
     "slug": "go-cli-template",
@@ -100,9 +100,7 @@
     "showAuthor": true
   },
   "commitlint": {
-    "extends": [
-      "@commitlint/config-conventional"
-    ],
+    "extends": [],
     "helpUrl": "https://megabyte.space/docs/contributing/commits"
   },
   "eslintConfig": {
