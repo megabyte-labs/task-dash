@@ -7,14 +7,14 @@ announce:
     application_id: O3UxD7HlPpcN88gpEkPIXQ
     enabled: false
     title_template: 'Go CLI {{ .Tag }} was just released!'
-    url_template: 'https://github.com/ProfessorManhattan/go-cli-template/releases/tag/{{ .Tag }}'
+    url_template: 'https://github.com/megabyte-labs/go-cli-template/releases/tag/{{ .Tag }}'
     username: tsgangster
   skip: '{{gt .Patch 0}}'
   slack:
     channel: '#go-lang'
     enabled: true
     icon_url: 'https://gitlab.com/megabyte-labs/misc/assets/-/raw/master/logo/megabytelabs-color-icon-350x350.png'
-    message_template: '**[Go CLI](https://github.com/ProfessorManhattan/go-cli-template)** {{.Tag}} is out! Check it out at {{.ReleaseURL}}.'
+    message_template: '**[Go CLI](https://github.com/megabyte-labs/go-cli-template)** {{.Tag}} is out! Check it out at {{.ReleaseURL}}.'
     username: Megabyte Labs Release Notification Bot
   teams:
     color: '#1DA1F2'
