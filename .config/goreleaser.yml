@@ -11,6 +11,32 @@ archives:
       - format: zip
         goos: windows
 
+aurs:
+  - commit_author:
+      email: help@megabyte.space
+      name: Megabyte Labs
+    description: A starting template for Go CLI projects
+    homepage: 'https://github.com/megabyte-labs/go-cli-template'
+    license: MIT
+    maintainers:
+      - Megabyte Labs <help@megabyte.space>
+    name: { { .ProjectName } }
+    # The AUR Git URL for this package.
+    # Defaults to empty. TODOTODOTODO
+    # git_url: 'ssh://aur@aur.archlinux.org/mypackage-bin.git'
+    package: |-
+      install -Dm755 "./mybin" "${pkgdir}/usr/bin/"
+      install -Dm644 "./LICENSE.md" "${pkgdir}/usr/share/licenses//LICENSE"
+      mkdir -p "${pkgdir}/usr/share/bash-completion/completions/"
+      mkdir -p "${pkgdir}/usr/share/zsh/site-functions/"
+      mkdir -p "${pkgdir}/usr/share/fish/vendor_completions.d/"
+      install -Dm644 "./local/completion/bash/.bash" "${pkgdir}/usr/share/bash-completion/completions/"
+      install -Dm644 "./local/completion/zsh/.zsh" "${pkgdir}/usr/share/zsh/site-functions/_"
+      install -Dm644 "./local/completion/fish/.fish" "${pkgdir}/usr/share/fish/vendor_completions.d/.fish"
+      # install -Dm644 "./local/man/.1.gz" "${pkgdir}/usr/share/man/man1/.1.gz"
+    private_key: '{{ .Env.AUR_KEY }}'
+    url_template: 'https://github.com/megabyte-labs/go-cli-template/releases/{{ .Tag }}/{{ .ArtifactName }}'
+
 before:
   hooks:
     - go mod tidy
@@ -18,12 +44,12 @@ before:
 brews:
   - description: A starting template for Go CLI projects
     folder: Formula
-    homepage: 'https://megabyte.space'
+    homepage: 'https://github.com/megabyte-labs/go-cli-template'
     install: |-
       bin.install ""
-      bash_completion.install "completion/bash/.bash" => ""
-      zsh_completion.install "completion/zsh/_" => "_"
-      fish_completion.install "completion/fish/.fish"
+      bash_completion.install "local/completion/bash/.bash" => ""
+      zsh_completion.install "local/completion/zsh/_" => "_"
+      fish_completion.install "local/completion/fish/.fish"
     license: MIT
     name: ''
     tap:
@@ -77,21 +103,36 @@ gomod:
   proxy: false
 
 nfpms:
-  - description: A starting template for Go CLI projects
+  - contents:
+      - dst: /usr/share/bash-completion/completions/
+        file_info:
+          mode: 0644
+        src: ./local/completion/bash/.bash
+      - dst: /usr/share/fish/completions/.fish
+        file_info:
+          mode: 0644
+        src: ./local/completion/fish/.fish
+      - dst: /usr/share/zsh/vendor-completions/_
+        file_info:
+          mode: 0644
+        src: ./local/completion/zsh/.zsh
+      - dst: /usr/share/man/man1/.1.gz
+        file_info:
+          mode: 0644
+        src: ./local/man/.1.gz
+      - dst: /usr/share/doc//copyright
+        file_info:
+          mode: 0644
+        src: ./LICENSE.md
+    description: A starting template for Go CLI projects
     formats:
       - apk
       - deb
       - rpm
-    homepage: 'https://megabyte.space'
+    homepage: 'https://github.com/megabyte-labs/go-cli-template'
     id: default
     license: MIT
     maintainer: Megabyte Labs <help@megabyte.space>
-    recommends:
-      - git
-    suggests:
-      - docker
-      - jq
-      - yq
     vendor: Megabyte LLC
 
 project_name: ''
@@ -99,15 +140,46 @@ project_name: ''
 release:
   disable: true
 
+scoop:
+  bucket:
+    branch: master
+    name: scoops
+    owner: installdoc
+    token: '{{ .Env.GITHUB_TOKEN }}'
+  commit_author:
+    email: help@megabyte.space
+    name: Megabyte Labs
+  commit_msg_template: 'Scoop update for {{ .ProjectName }} version {{ .Tag }}'
+  description: A starting template for Go CLI projects
+  folder: Scoops
+  homepage: 'https://github.com/megabyte-labs/go-cli-template'
+  license: MIT
+  post_install: ["Write-Host 'Installation complete!'"]
+
+  pre_install: ["Write-Host 'Beginning the installation..'"]
+  url_template: 'https://github.com/megabyte-labs/go-cli-template/releases/{{ .Tag }}/{{ .ArtifactName }}'
 # eslint-disable max-len
 snapcrafts:
   - confinement: classic
     # yamllint disable-line rule:line-length
     description: 'This project is a boilerplate for Go CLI projects. It includes common files that are shared throughout the Megabyte Labs ecosystem. It also includes a basic project structure. It does not attempt to dictate project structure - it just takes care of all the meta-tasks like configuring CI, linters, and build tools.'
     extra_files:
-      - destination: completion
-        mode: 0755
-        source: completion
+      - destination: /usr/share/bash-completion/completions/
+        mode: 0644
+        source: ./local/completion/bash/.bash
+      - destination: /usr/share/fish/completions/.fish
+        mode: 0644
+        source: ./local/completion/fish/.fish
+      - destination: /usr/share/zsh/vendor-completions/_
+        mode: 0644
+        source: ./local/completion/zsh/.zsh
+      - destination: /usr/share/man/man1/.1.gz
+        file_info:
+        mode: 0644
+        source: ./local/man/.1.gz
+      - destination: /usr/share/doc//copyright
+        mode: 0644
+        source: ./LICENSE.md
     id: default
     license: MIT
     publish: true
