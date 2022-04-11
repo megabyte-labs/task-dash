@@ -58,6 +58,7 @@
 ## Table of Contents
 
 - [Overview](#overview)
+- [This Repository (Shared Common)](#this-repository-shared-common)
 - [Installation](#installation)
   - [Quick Method](#quick-method)
   - [Compile Program with Go](#compile-program-with-go)
@@ -73,7 +74,12 @@
 ## Overview
 
 This project is a boilerplate for Go CLI projects. It includes common files that are shared throughout the Megabyte Labs ecosystem. It also includes a basic project structure. It does not attempt to dictate project structure - it just takes care of all the meta-tasks like configuring CI, linters, and build tools.
-{{ load:docs/partials/features.md }}
+
+<a href="#this-repository-shared-common" style="width:100%"><img style="width:100%" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png" /></a>
+
+## This Repository (Shared Common)
+
+This repository houses files that propagate downstream to project-specific repositories.
 
 <a href="#installation" style="width:100%"><img style="width:100%" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png" /></a>
 
