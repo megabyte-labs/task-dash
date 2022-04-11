@@ -11,31 +11,36 @@ archives:
       - format: zip
         goos: windows
 
-aurs:
-  - commit_author:
-      email: help@megabyte.space
-      name: Megabyte Labs
-    description: A starting template for Go CLI projects
-    homepage: 'https://github.com/megabyte-labs/go-cli-template'
-    license: MIT
-    maintainers:
-      - Megabyte Labs <help@megabyte.space>
-    name: { { .ProjectName } }
-    # The AUR Git URL for this package.
-    # Defaults to empty. TODOTODOTODO
-    # git_url: 'ssh://aur@aur.archlinux.org/mypackage-bin.git'
-    package: |-
-      install -Dm755 "./mybin" "${pkgdir}/usr/bin/"
-      install -Dm644 "./LICENSE.md" "${pkgdir}/usr/share/licenses//LICENSE"
-      mkdir -p "${pkgdir}/usr/share/bash-completion/completions/"
-      mkdir -p "${pkgdir}/usr/share/zsh/site-functions/"
-      mkdir -p "${pkgdir}/usr/share/fish/vendor_completions.d/"
-      install -Dm644 "./local/completion/bash/.bash" "${pkgdir}/usr/share/bash-completion/completions/"
-      install -Dm644 "./local/completion/zsh/.zsh" "${pkgdir}/usr/share/zsh/site-functions/_"
-      install -Dm644 "./local/completion/fish/.fish" "${pkgdir}/usr/share/fish/vendor_completions.d/.fish"
-      # install -Dm644 "./local/man/.1.gz" "${pkgdir}/usr/share/man/man1/.1.gz"
-    private_key: '{{ .Env.AUR_KEY }}'
-    url_template: 'https://github.com/megabyte-labs/go-cli-template/releases/{{ .Tag }}/{{ .ArtifactName }}'
+# aurs:
+#  - commit_author:
+#      name: Megabyte Labs
+#      email: help@megabyte.space
+#    description: A starting template for Go CLI projects
+#    # The AUR Git URL for this package.
+#    # Defaults to empty. TODOTODOTODO
+#    # git_url: ssh://aur@aur.archlinux.org/mypackage-bin.git
+#    homepage: https://github.com/megabyte-labs/go-cli-template
+#    license: MIT
+#    maintainers:
+#      - Megabyte Labs <help@megabyte.space>
+#    name: '{{ .ProjectName }}'
+#    private_key: '{{ .Env.AUR_KEY }}'
+#
+#
+#
+#
+#
+#    package: |-
+#      install -Dm755 "./mybin" "${pkgdir}/usr/bin/"
+#      install -Dm644 "./LICENSE.md" "${pkgdir}/usr/share/licenses//LICENSE"
+#      mkdir -p "${pkgdir}/usr/share/bash-completion/completions/"
+#      mkdir -p "${pkgdir}/usr/share/zsh/site-functions/"
+#      mkdir -p "${pkgdir}/usr/share/fish/vendor_completions.d/"
+#      install -Dm644 "./local/completion/bash/.bash" "${pkgdir}/usr/share/bash-completion/completions/"
+#      install -Dm644 "./local/completion/zsh/.zsh" "${pkgdir}/usr/share/zsh/site-functions/_"
+#      install -Dm644 "./local/completion/fish/.fish" "${pkgdir}/usr/share/fish/vendor_completions.d/.fish"
+#      # install -Dm644 "./local/man/.1.gz" "${pkgdir}/usr/share/man/man1/.1.gz"
+#    url_template: "https://github.com/megabyte-labs/go-cli-template/releases/{{ .Tag }}/{{ .ArtifactName }}"
 
 before:
   hooks:
@@ -44,21 +49,22 @@ before:
 brews:
   - description: A starting template for Go CLI projects
     folder: Formula
-    homepage: 'https://github.com/megabyte-labs/go-cli-template'
+    homepage: https://github.com/megabyte-labs/go-cli-template
     install: |-
       bin.install ""
       bash_completion.install "local/completion/bash/.bash" => ""
       zsh_completion.install "local/completion/zsh/_" => "_"
       fish_completion.install "local/completion/fish/.fish"
     license: MIT
-    name: ''
+    name:
     tap:
       name: homebrew-tap
       owner: installdoc
-    test: ''
+    test: |
+      system "#{bin}/ --version"
 
 build:
-  binary: ''
+  binary:
   env:
     - CGO_ENABLED=0
   goarch:
@@ -77,7 +83,7 @@ build:
       goos: darwin
   ldflags:
     # yamllint disable-line rule:line-length
-    - '-s -w -X "main.version={{.Version}}" -X "main.commit={{.Commit}}" -X "main.date={{.Date}}" -X "main.builtBy=Megabyte Labs"'
+    - -s -w -X "main.version={{.Version}}" -X "main.commit={{.Commit}}" -X "main.date={{.Date}}" -X "main.builtBy=Megabyte Labs"
   main: main.go
 
 changelog:
@@ -91,7 +97,7 @@ dist: build
 dockers:
   - dockerfile: .config/Dockerfile
     ids:
-      - { { .ProjectName } }
+      - '{{.ProjectName}}'
     image_templates:
       - 'megabytelabs/{{.ProjectName}}:{{.Tag}}'
       - 'megabytelabs/{{.ProjectName}}:v{{.Major}}'
@@ -129,13 +135,13 @@ nfpms:
       - apk
       - deb
       - rpm
-    homepage: 'https://github.com/megabyte-labs/go-cli-template'
+    homepage: https://github.com/megabyte-labs/go-cli-template
     id: default
     license: MIT
     maintainer: Megabyte Labs <help@megabyte.space>
     vendor: Megabyte LLC
 
-project_name: ''
+project_name:
 
 release:
   disable: true
@@ -152,17 +158,17 @@ scoop:
   commit_msg_template: 'Scoop update for {{ .ProjectName }} version {{ .Tag }}'
   description: A starting template for Go CLI projects
   folder: Scoops
-  homepage: 'https://github.com/megabyte-labs/go-cli-template'
+  homepage: https://github.com/megabyte-labs/go-cli-template
   license: MIT
   post_install: ["Write-Host 'Installation complete!'"]
-
   pre_install: ["Write-Host 'Beginning the installation..'"]
   url_template: 'https://github.com/megabyte-labs/go-cli-template/releases/{{ .Tag }}/{{ .ArtifactName }}'
+
 # eslint-disable max-len
 snapcrafts:
   - confinement: classic
     # yamllint disable-line rule:line-length
-    description: 'This project is a boilerplate for Go CLI projects. It includes common files that are shared throughout the Megabyte Labs ecosystem. It also includes a basic project structure. It does not attempt to dictate project structure - it just takes care of all the meta-tasks like configuring CI, linters, and build tools.'
+    description: This project is a boilerplate for Go CLI projects. It includes common files that are shared throughout the Megabyte Labs ecosystem. It also includes a basic project structure. It does not attempt to dictate project structure - it just takes care of all the meta-tasks like configuring CI, linters, and build tools.
     extra_files:
       - destination: /usr/share/bash-completion/completions/
         mode: 0644
@@ -187,7 +193,7 @@ snapcrafts:
 # eslint-enable max-len
 
 snapshot:
-  name_template: '{{.Tag}}'
+  name_template: '{{ .Tag }}'
 
 universal_binaries:
   - replace: true
