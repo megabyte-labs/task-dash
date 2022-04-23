@@ -76,6 +76,7 @@
     "tag": "edge"
   },
   "blueprint": {
+    "boilerplate": true,
     "customPackageName": "go-cli-template",
     "description": "A starting template for Go CLI projects",
     "github_id": "R_kgDOGr8gew",
