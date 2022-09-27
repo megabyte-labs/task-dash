@@ -11,15 +11,15 @@ archives:
       - format: zip
         goos: windows
 
-# aurs:
+#aurs:
 #  - commit_author:
 #      name: Megabyte Labs
 #      email: help@megabyte.space
-#    description: A starting template for Go CLI projects
+#    description: A gorgeous TUI menu for go-task/task
 #    # The AUR Git URL for this package.
 #    # Defaults to empty. TODOTODOTODO
 #    # git_url: ssh://aur@aur.archlinux.org/mypackage-bin.git
-#    homepage: https://github.com/megabyte-labs/go-cli-template
+#    homepage: https://github.com/megabyte-labs/go/cli/task-dash
 #    license: MIT
 #    maintainers:
 #      - Megabyte Labs <help@megabyte.space>
@@ -40,23 +40,23 @@ archives:
 #      install -Dm644 "./local/completion/zsh/.zsh" "${pkgdir}/usr/share/zsh/site-functions/_"
 #      install -Dm644 "./local/completion/fish/.fish" "${pkgdir}/usr/share/fish/vendor_completions.d/.fish"
 #      # install -Dm644 "./local/man/.1.gz" "${pkgdir}/usr/share/man/man1/.1.gz"
-#    url_template: "https://github.com/megabyte-labs/go-cli-template/releases/{{ .Tag }}/{{ .ArtifactName }}"
+#    url_template: "https://github.com/megabyte-labs/go/cli/task-dash/releases/{{ .Tag }}/{{ .ArtifactName }}"
 
 before:
   hooks:
     - go mod tidy
 
 brews:
-  - description: A starting template for Go CLI projects
+  - description: A gorgeous TUI menu for go-task/task
     folder: Formula
-    homepage: https://github.com/megabyte-labs/go-cli-template
+    homepage: https://github.com/megabyte-labs/go/cli/task-dash
     install: |-
       bin.install ""
       bash_completion.install "local/completion/bash/.bash" => ""
       zsh_completion.install "local/completion/zsh/_" => "_"
       fish_completion.install "local/completion/fish/.fish"
     license: MIT
-    name:
+    name: 
     tap:
       name: homebrew-tap
       owner: installdoc
@@ -64,7 +64,7 @@ brews:
       system "#{bin}/ --version"
 
 build:
-  binary:
+  binary: 
   env:
     - CGO_ENABLED=0
   goarch:
@@ -109,87 +109,93 @@ gomod:
   proxy: false
 
 nfpms:
-  - contents:
-      - dst: /usr/share/bash-completion/completions/
-        file_info:
-          mode: 0644
-        src: ./local/completion/bash/.bash
-      - dst: /usr/share/fish/completions/.fish
-        file_info:
-          mode: 0644
-        src: ./local/completion/fish/.fish
-      - dst: /usr/share/zsh/vendor-completions/_
-        file_info:
-          mode: 0644
-        src: ./local/completion/zsh/.zsh
-      - dst: /usr/share/man/man1/.1.gz
-        file_info:
-          mode: 0644
-        src: ./local/man/.1.gz
-      - dst: /usr/share/doc//copyright
-        file_info:
-          mode: 0644
-        src: ./LICENSE.md
-    description: A starting template for Go CLI projects
+  - description: A gorgeous TUI menu for go-task/task
     formats:
       - apk
       - deb
       - rpm
-    homepage: https://github.com/megabyte-labs/go-cli-template
+    homepage: https://github.com/megabyte-labs/go/cli/task-dash
     id: default
     license: MIT
     maintainer: Megabyte Labs <help@megabyte.space>
+    contents:
+      - src: ./local/completion/bash/.bash
+        dst: /usr/share/bash-completion/completions/
+        file_info:
+          mode: 0644
+      - src: ./local/completion/fish/.fish
+        dst: /usr/share/fish/completions/.fish
+        file_info:
+          mode: 0644
+      - src: ./local/completion/zsh/.zsh
+        dst:  /usr/share/zsh/vendor-completions/_
+        file_info:
+          mode: 0644
+      - src: ./local/man/.1.gz
+        dst: /usr/share/man/man1/.1.gz
+        file_info:
+          mode: 0644
+      - src: ./LICENSE.md
+        dst: /usr/share/doc//copyright
+        file_info:
+          mode: 0644
     vendor: Megabyte LLC
 
-project_name:
+project_name: 
 
 release:
   disable: true
 
 scoop:
   bucket:
-    branch: master
-    name: scoops
     owner: installdoc
+    name: scoops
+    branch: master
     token: '{{ .Env.GITHUB_TOKEN }}'
-  commit_author:
-    email: help@megabyte.space
-    name: Megabyte Labs
-  commit_msg_template: 'Scoop update for {{ .ProjectName }} version {{ .Tag }}'
-  description: A starting template for Go CLI projects
   folder: Scoops
-  homepage: https://github.com/megabyte-labs/go-cli-template
+  commit_author:
+    name: Megabyte Labs
+    email: help@megabyte.space
+  commit_msg_template: 'Scoop update for {{ .ProjectName }} version {{ .Tag }}'
+  homepage: https://github.com/megabyte-labs/go/cli/task-dash
+  description: A gorgeous TUI menu for go-task/task
   license: MIT
-  post_install: ["Write-Host 'Installation complete!'"]
   pre_install: ["Write-Host 'Beginning the installation..'"]
-  url_template: 'https://github.com/megabyte-labs/go-cli-template/releases/{{ .Tag }}/{{ .ArtifactName }}'
+  post_install: ["Write-Host 'Installation complete!'"]
+  url_template: 'https://github.com/megabyte-labs/go/cli/task-dash/releases/{{ .Tag }}/{{ .ArtifactName }}'
 
 # eslint-disable max-len
 snapcrafts:
   - confinement: classic
     # yamllint disable-line rule:line-length
-    description: This project is a boilerplate for Go CLI projects. It includes common files that are shared throughout the Megabyte Labs ecosystem. It also includes a basic project structure. It does not attempt to dictate project structure - it just takes care of all the meta-tasks like configuring CI, linters, and build tools.
+    description: Task Dash is a gorgeous manager for user defined scripts. It works well together with go-task since it reads data in the Taskfile.yml format. With Task Dash, you can make it super easy for your developers to browse through, read about, and execute your project&#x27;s tasks. It combines several elements from the [Charm Bracelet](https://github.com/charmbracelet) TUI libraries. It bundles together features like:
+
+* An interactive task selector
+* Ability to search for a particular task
+* A styled terminal program for viewing markdown files.
+
+With Task Dash, you can bundle documentation and scripts into an interactive way for developers to get started as quickly as possible.
     extra_files:
-      - destination: /usr/share/bash-completion/completions/
+      - source: ./local/completion/bash/.bash
+        destination: /usr/share/bash-completion/completions/
         mode: 0644
-        source: ./local/completion/bash/.bash
-      - destination: /usr/share/fish/completions/.fish
+      - source: ./local/completion/fish/.fish
+        destination: /usr/share/fish/completions/.fish
         mode: 0644
-        source: ./local/completion/fish/.fish
-      - destination: /usr/share/zsh/vendor-completions/_
+      - source: ./local/completion/zsh/.zsh
+        destination:  /usr/share/zsh/vendor-completions/_
         mode: 0644
-        source: ./local/completion/zsh/.zsh
-      - destination: /usr/share/man/man1/.1.gz
+      - source: ./local/man/.1.gz
+        destination: /usr/share/man/man1/.1.gz
         file_info:
         mode: 0644
-        source: ./local/man/.1.gz
-      - destination: /usr/share/doc//copyright
+      - source: ./LICENSE.md
+        destination: /usr/share/doc//copyright
         mode: 0644
-        source: ./LICENSE.md
     id: default
     license: MIT
     publish: true
-    summary: A starting template for Go CLI projects
+    summary: A gorgeous TUI menu for go-task/task
 # eslint-enable max-len
 
 snapshot:

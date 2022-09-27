@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# @description This script will install Go CLI. The script heavily borrows from
+# @description This script will install Task Dash. The script heavily borrows from
 #   [dep's install.sh script](https://github.com/golang/dep/blob/master/install.sh) but is adapted
 #   to serve as a generic GitHub release installer instead of a Go GitHub release installer. It
 #   identifies most platforms and throws an error if the platform is not supported.
@@ -13,10 +13,10 @@
 #   ## Install Command
 #
 #   ```
-#   curl -sSL https://raw.githubusercontent.com/megabyte-labs/go-cli-template/master/local/install.sh | sh
+#   curl -sSL https://raw.githubusercontent.com/megabyte-labs/task-dash/master/local/install.sh | sh
 #   ```
 
-RELEASES_URL="https://github.com/megabyte-labs/go-cli-template/releases"
+RELEASES_URL="https://github.com/megabyte-labs/go/cli/task-dash/releases"
 
 downloadJSON() {
     url="$2"

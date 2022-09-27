@@ -2,17 +2,17 @@
   "private": false,
   "name": "go-cli-template",
   "version": "0.0.1",
-  "description": "A starting template for Go CLI projects",
+  "description": "A gorgeous TUI menu for go-task/task",
   "license": "MIT",
   "author": "Brian Zalewski <brian@megabyte.space> (https://megabyte.space)",
   "homepage": "https://megabyte.space",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/megabyte-labs/go-cli-template.git"
+    "url": "git+https://github.com/megabyte-labs/go/cli/task-dash.git"
   },
   "bugs": {
     "email": "help@megabyte.space",
-    "url": "https://gitlab.com/megabyte-labs/templates/go-cli/-/issues"
+    "url": "https://gitlab.com/megabyte-labs/go/cli/task-dash/-/issues"
   },
   "type": "module",
   "files": [],
@@ -75,7 +75,7 @@
     "node": ">=14.18.0"
   },
   "publishConfig": {
-    "@gitlab:registry": "https://gitlab.com/api/v4/projects/29528131/packages/npm/",
+    "@gitlab:registry": "https://gitlab.com/api/v4/projects//packages/npm/",
     "@megabyte:registry": "https://gitlab.com/api/v4/projects/29528131/packages/npm/",
     "access": "public",
     "registry": "https://registry.npmjs.org/",
@@ -130,7 +130,7 @@
   "goBinary": {
     "name": "",
     "path": "./bin",
-    "url": "https://github.com/megabyte-labs/go-cli-template/releases/download/v0.0.1/Go-CLI-0.0.1-{{platform}}-{{arch}}.tar.gz"
+    "url": "https://github.com/megabyte-labs/go/cli/task-dash/releases/download/v0.0.1/Task-Dash-0.0.1-{{platform}}-{{arch}}.tar.gz"
   },
   "jscpd": {
     "gitignore": true,
