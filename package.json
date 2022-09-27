@@ -93,7 +93,10 @@
     },
     "slug": "task-dash",
     "subgroup": "cli",
-    "title": "Task Dash - A TUI for Scripts"
+    "title": "Task Dash - A TUI for Scripts",
+    "github_id": "R_kgDOIEwA3A",
+    "gitlab_project_id": "39738731",
+    "gitlab_group_id": "14342540"
   },
   "changelog": {
     "displayTypes": [
