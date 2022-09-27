@@ -1,0 +1,10 @@
+version: '3'
+
+vars:
+  CONTENT: default
+
+  FILE: file.txt
+tasks:
+  default:
+    cmds:
+      - echo "{{.CONTENT}}" > {{.FILE}}

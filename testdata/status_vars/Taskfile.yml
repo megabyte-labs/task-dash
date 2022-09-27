@@ -1,0 +1,10 @@
+version: '3'
+
+tasks:
+  build:
+    status:
+      - echo "{{.CHECKSUM}}"
+      - echo '{{.TIMESTAMP.Unix}}'
+      - echo '{{.TIMESTAMP}}'
+    sources:
+      - ./source.txt

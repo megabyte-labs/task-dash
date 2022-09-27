@@ -1,0 +1,17 @@
+version: '3'
+
+tasks:
+  gen-bar:
+    cmds:
+      - touch bar.txt
+    status:
+      - test 1 = 1
+    sources:
+      - ./bar.txt
+  gen-foo:
+    cmds:
+      - touch foo.txt
+    status:
+      - test 1 = 0
+    sources:
+      - ./foo.txt

@@ -1,0 +1,8 @@
+version: 1
+tasks:
+  bar:
+    cmds:
+      - echo "Bar"
+  foo:
+    cmds:
+      - echo "Foo"

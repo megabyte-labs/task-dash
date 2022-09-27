@@ -1,0 +1,9 @@
+version: '3'
+
+tasks:
+  default:
+    cmds:
+      - echo "string-slice-1"
+    preconditions:
+      -
+      - sh: '[ 1 = 1 ]'

@@ -1,0 +1,19 @@
+version: '3'
+
+vars:
+  TASKFILE_DIR:
+    sh: basename $(pwd)
+
+tasks:
+  from-included-taskfile:
+    silent: true
+
+    cmds:
+      - echo '{{.TASKFILE_DIR}}' > from_included_taskfile.txt
+  from-included-taskfile-task:
+    silent: true
+    vars:
+      TASKFILE_TASK_DIR:
+        sh: basename $(pwd)
+    cmds:
+      - echo '{{.TASKFILE_TASK_DIR}}' > from_included_taskfile_task.txt

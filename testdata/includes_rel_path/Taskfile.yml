@@ -1,0 +1,9 @@
+version: '3'
+
+includes:
+  common:
+    taskfile: ./common
+    dir: ./common
+  included:
+    taskfile: ./included
+    dir: ./included

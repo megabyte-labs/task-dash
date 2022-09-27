@@ -1,0 +1,51 @@
+version: '3'
+
+vars:
+  BUILD_DIR:
+    sh: pwd
+
+tasks:
+  abs.txt:
+    deps:
+      - sub/src.txt
+    desc: generates dest file based on absolute paths
+    dir: sub
+    cmds:
+      - cat src.txt > '{{.BUILD_DIR}}/abs.txt'
+    method: timestamp
+    sources:
+      - src.txt
+    generates:
+      - '{{.BUILD_DIR}}/abs.txt'
+
+  my text file.txt:
+    deps: [sub/src.txt]
+    desc: generate file with spaces in the name
+    cmds:
+      - cat sub/src.txt > 'my text file.txt'
+    method: timestamp
+    sources:
+      - sub/src.txt
+    generates:
+      - my text file.txt
+  rel.txt:
+    deps:
+      - sub/src.txt
+    desc: generates dest file based on relative paths
+    dir: sub
+    cmds:
+      - cat src.txt > '../rel.txt'
+    method: timestamp
+    sources:
+      - src.txt
+    generates:
+      - ../rel.txt
+
+  sub/src.txt:
+    desc: generate source file
+    cmds:
+      - mkdir -p sub
+      - echo "hello world" > sub/src.txt
+    status:
+      - test -f sub/src.txt
+    method: timestamp
