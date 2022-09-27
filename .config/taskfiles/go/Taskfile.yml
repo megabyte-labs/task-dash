@@ -75,7 +75,7 @@ tasks:
     cmds:
       - |
         for FILE in build/goreleaserdocker*; do
-          [ -e "$FILE" ] && task --dir "../.." docker:verify docker:build docker:publish
+          [ -e "$FILE" ] && task --dir "$FILE/../../.." docker:verify docker:build docker:publish
           break
         done
       - rm -rf build/goreleaserdocker*
