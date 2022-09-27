@@ -142,7 +142,7 @@ nfpms:
     maintainer: Megabyte Labs <help@megabyte.space>
     vendor: Megabyte LLC
 
-project_name:
+project_name: task-dash
 
 release:
   disable: true
