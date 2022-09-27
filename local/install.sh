@@ -136,7 +136,7 @@ echo "Ensuring platform is supported"
 if [ "${OS}" != "linux" ] && { [ "${ARCH}" = "ppc64" ] || [ "${ARCH}" = "ppc64le" ];}; then
   echo "${OS}-${ARCH} is not supported by this instalation script" && exit 1
 else
-  BINARY="-${OS}-${ARCH}"
+  BINARY="task-dash-${OS}-${ARCH}"
   if [ "$OS" = "windows" ]; then
     BINARY="$BINARY.exe"
   fi
@@ -160,7 +160,7 @@ echo "Setting executable permissions"
 chmod +x "$DOWNLOAD_FILE"
 
 echo "Moving executable to $INSTALL_DIRECTORY/$INSTALL_NAME"
-INSTALL_NAME=""
+INSTALL_NAME="task-dash"
 if [ "$OS" = "windows" ]; then
     INSTALL_NAME="$INSTALL_NAME.exe"
 fi

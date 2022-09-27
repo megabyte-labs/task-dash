@@ -11,7 +11,7 @@ archives:
       - format: zip
         goos: windows
 
-#aurs:
+# aurs:
 #  - commit_author:
 #      name: Megabyte Labs
 #      email: help@megabyte.space
@@ -31,15 +31,15 @@ archives:
 #
 #
 #    package: |-
-#      install -Dm755 "./mybin" "${pkgdir}/usr/bin/"
-#      install -Dm644 "./LICENSE.md" "${pkgdir}/usr/share/licenses//LICENSE"
+#      install -Dm755 "./mybin" "${pkgdir}/usr/bin/task-dash"
+#      install -Dm644 "./LICENSE.md" "${pkgdir}/usr/share/licenses/task-dash/LICENSE"
 #      mkdir -p "${pkgdir}/usr/share/bash-completion/completions/"
 #      mkdir -p "${pkgdir}/usr/share/zsh/site-functions/"
 #      mkdir -p "${pkgdir}/usr/share/fish/vendor_completions.d/"
-#      install -Dm644 "./local/completion/bash/.bash" "${pkgdir}/usr/share/bash-completion/completions/"
-#      install -Dm644 "./local/completion/zsh/.zsh" "${pkgdir}/usr/share/zsh/site-functions/_"
-#      install -Dm644 "./local/completion/fish/.fish" "${pkgdir}/usr/share/fish/vendor_completions.d/.fish"
-#      # install -Dm644 "./local/man/.1.gz" "${pkgdir}/usr/share/man/man1/.1.gz"
+#      install -Dm644 "./local/completion/bash/task-dash.bash" "${pkgdir}/usr/share/bash-completion/completions/task-dash"
+#      install -Dm644 "./local/completion/zsh/task-dash.zsh" "${pkgdir}/usr/share/zsh/site-functions/_task-dash"
+#      install -Dm644 "./local/completion/fish/task-dash.fish" "${pkgdir}/usr/share/fish/vendor_completions.d/task-dash.fish"
+#      # install -Dm644 "./local/man/task-dash.1.gz" "${pkgdir}/usr/share/man/man1/task-dash.1.gz"
 #    url_template: "https://github.com/megabyte-labs/task-dash/releases/{{ .Tag }}/{{ .ArtifactName }}"
 
 before:
@@ -51,20 +51,20 @@ brews:
     folder: Formula
     homepage: https://github.com/megabyte-labs/task-dash
     install: |-
-      bin.install ""
-      bash_completion.install "local/completion/bash/.bash" => ""
-      zsh_completion.install "local/completion/zsh/_" => "_"
-      fish_completion.install "local/completion/fish/.fish"
+      bin.install "task-dash"
+      bash_completion.install "local/completion/bash/task-dash.bash" => "task-dash"
+      zsh_completion.install "local/completion/zsh/_task-dash" => "_task-dash"
+      fish_completion.install "local/completion/fish/task-dash.fish"
     license: MIT
-    name: 
+    name: task-dash
     tap:
       name: homebrew-tap
       owner: installdoc
     test: |
-      system "#{bin}/ --version"
+      system "#{bin}/task-dash --version"
 
 build:
-  binary: 
+  binary: task-dash
   env:
     - CGO_ENABLED=0
   goarch:
@@ -84,7 +84,7 @@ build:
   ldflags:
     # yamllint disable-line rule:line-length
     - -s -w -X "main.version={{.Version}}" -X "main.commit={{.Commit}}" -X "main.date={{.Date}}" -X "main.builtBy=Megabyte Labs"
-  main: main.go
+  main: ./cmd/task
 
 changelog:
   skip: true
@@ -109,7 +109,28 @@ gomod:
   proxy: false
 
 nfpms:
-  - description: A gorgeous TUI menu for go-task/task
+  - contents:
+      - dst: /usr/share/bash-completion/completions/task-dash
+        file_info:
+          mode: 0644
+        src: ./local/completion/bash/task-dash.bash
+      - dst: /usr/share/fish/completions/task-dash.fish
+        file_info:
+          mode: 0644
+        src: ./local/completion/fish/task-dash.fish
+      - dst: /usr/share/zsh/vendor-completions/_task-dash
+        file_info:
+          mode: 0644
+        src: ./local/completion/zsh/task-dash.zsh
+      - dst: /usr/share/man/man1/task-dash.1.gz
+        file_info:
+          mode: 0644
+        src: ./local/man/task-dash.1.gz
+      - dst: /usr/share/doc/task-dash/copyright
+        file_info:
+          mode: 0644
+        src: ./LICENSE.md
+    description: A gorgeous TUI menu for go-task/task
     formats:
       - apk
       - deb
@@ -118,80 +139,53 @@ nfpms:
     id: default
     license: MIT
     maintainer: Megabyte Labs <help@megabyte.space>
-    contents:
-      - src: ./local/completion/bash/.bash
-        dst: /usr/share/bash-completion/completions/
-        file_info:
-          mode: 0644
-      - src: ./local/completion/fish/.fish
-        dst: /usr/share/fish/completions/.fish
-        file_info:
-          mode: 0644
-      - src: ./local/completion/zsh/.zsh
-        dst:  /usr/share/zsh/vendor-completions/_
-        file_info:
-          mode: 0644
-      - src: ./local/man/.1.gz
-        dst: /usr/share/man/man1/.1.gz
-        file_info:
-          mode: 0644
-      - src: ./LICENSE.md
-        dst: /usr/share/doc//copyright
-        file_info:
-          mode: 0644
     vendor: Megabyte LLC
 
-project_name: 
+project_name:
 
 release:
   disable: true
 
 scoop:
   bucket:
-    owner: installdoc
-    name: scoops
     branch: master
+    name: scoops
+    owner: installdoc
     token: '{{ .Env.GITHUB_TOKEN }}'
-  folder: Scoops
   commit_author:
-    name: Megabyte Labs
     email: help@megabyte.space
+    name: Megabyte Labs
   commit_msg_template: 'Scoop update for {{ .ProjectName }} version {{ .Tag }}'
-  homepage: https://github.com/megabyte-labs/task-dash
   description: A gorgeous TUI menu for go-task/task
+  folder: Scoops
+  homepage: https://github.com/megabyte-labs/task-dash
   license: MIT
-  pre_install: ["Write-Host 'Beginning the installation..'"]
   post_install: ["Write-Host 'Installation complete!'"]
+  pre_install: ["Write-Host 'Beginning the installation..'"]
   url_template: 'https://github.com/megabyte-labs/task-dash/releases/{{ .Tag }}/{{ .ArtifactName }}'
 
 # eslint-disable max-len
 snapcrafts:
   - confinement: classic
     # yamllint disable-line rule:line-length
-    description: Task Dash is a gorgeous manager for user defined scripts. It works well together with go-task since it reads data in the Taskfile.yml format. With Task Dash, you can make it super easy for your developers to browse through, read about, and execute your project&#x27;s tasks. It combines several elements from the [Charm Bracelet](https://github.com/charmbracelet) TUI libraries. It bundles together features like:
-
-* An interactive task selector
-* Ability to search for a particular task
-* A styled terminal program for viewing markdown files.
-
-With Task Dash, you can bundle documentation and scripts into an interactive way for developers to get started as quickly as possible.
+    description: Task Dash is a gorgeous manager for user defined scripts. It works well together with go-task since it reads data in the Taskfile.yml format. With Task Dash, you can make it super easy for your developers to browse through, read about, and execute your project&#x27;s tasks. It combines several elements from the [Charm Bracelet](https://github.com/charmbracelet) TUI libraries. It bundles together features like an interactive task selector, the ability to search for a particular task, and a styled terminal program for viewing markdown files. With Task Dash, you can bundle documentation and scripts into an interactive way for developers to get started as quickly as possible.
     extra_files:
-      - source: ./local/completion/bash/.bash
-        destination: /usr/share/bash-completion/completions/
+      - destination: /usr/share/bash-completion/completions/task-dash
         mode: 0644
-      - source: ./local/completion/fish/.fish
-        destination: /usr/share/fish/completions/.fish
+        source: ./local/completion/bash/task-dash.bash
+      - destination: /usr/share/fish/completions/task-dash.fish
         mode: 0644
-      - source: ./local/completion/zsh/.zsh
-        destination:  /usr/share/zsh/vendor-completions/_
+        source: ./local/completion/fish/task-dash.fish
+      - destination: /usr/share/zsh/vendor-completions/_task-dash
         mode: 0644
-      - source: ./local/man/.1.gz
-        destination: /usr/share/man/man1/.1.gz
+        source: ./local/completion/zsh/task-dash.zsh
+      - destination: /usr/share/man/man1/task-dash.1.gz
         file_info:
         mode: 0644
-      - source: ./LICENSE.md
-        destination: /usr/share/doc//copyright
+        source: ./local/man/task-dash.1.gz
+      - destination: /usr/share/doc/task-dash/copyright
         mode: 0644
+        source: ./LICENSE.md
     id: default
     license: MIT
     publish: true

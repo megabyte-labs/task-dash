@@ -49,7 +49,7 @@
   </a>
 </div>
 
-> </br><h4 align="center">**subheaderDescription**</h4></br>
+> </br><h4 align="center">**A gorgeous TUI menu for [go-task/task](https://github.com/go-task/task)**</h4></br>
 
 <!--TERMINALIZE![terminalizer_title](https://gitlab.com/megabyte-labs/go/cli/task-dash/-/raw/master/docs/demo.gif)TERMINALIZE-->
 
@@ -73,13 +73,7 @@
 
 ## Overview
 
-Task Dash is a gorgeous manager for user defined scripts. It works well together with go-task since it reads data in the Taskfile.yml format. With Task Dash, you can make it super easy for your developers to browse through, read about, and execute your project's tasks. It combines several elements from the [Charm Bracelet](https://github.com/charmbracelet) TUI libraries. It bundles together features like:
-
-- An interactive task selector
-- Ability to search for a particular task
-- A styled terminal program for viewing markdown files.
-
-With Task Dash, you can bundle documentation and scripts into an interactive way for developers to get started as quickly as possible.
+Task Dash is a gorgeous manager for user defined scripts. It works well together with go-task since it reads data in the Taskfile.yml format. With Task Dash, you can make it super easy for your developers to browse through, read about, and execute your project's tasks. It combines several elements from the [Charm Bracelet](https://github.com/charmbracelet) TUI libraries. It bundles together features like an interactive task selector, the ability to search for a particular task, and a styled terminal program for viewing markdown files. With Task Dash, you can bundle documentation and scripts into an interactive way for developers to get started as quickly as possible.
 
 <a href="#go-cli-boilerplate" style="width:100%"><img style="width:100%" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png" /></a>
 
@@ -103,13 +97,13 @@ There are several ways you can install this CLI. You can:
 If you are looking to install the CLI as quickly as possible then you can run the following script which will install the binary to your `/usr/local/bin` folder on macOS or Linux:
 
 ```
-curl -sS https://install.doctor/binName | bash
+curl -sS https://install.doctor/task-dash | bash
 ```
 
 Or, if you are on Windows, you can install it by running:
 
 ```
-Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://install.doctor/binName?os=win'))
+Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://install.doctor/task-dash?os=win'))
 ```
 
 ### Compile Program with Go
@@ -119,8 +113,8 @@ You can install the CLI by compiling it from the source as long as you have a re
 ```
 git clone https://github.com/megabyte-labs/task-dash.git
 cd {{#withLast (split repository.github "/")}}this}}{{/withLast
-build_command
-sudo mv build_command_output /usr/local/bin
+go build -o dist/task cmd/task/task.go
+sudo mv ./dist/task /usr/local/bin
 ```
 
 After you compile the program, you should then move the binary file to a location that is in your `PATH` (which is what the last line does in the snippet above).
@@ -130,7 +124,7 @@ After you compile the program, you should then move the binary file to a locatio
 Every release is bundled into an NPM package that you can install by running the following command:
 
 ```
-npm install -g binName
+npm install -g task-dash
 ```
 
 ### Pre-Built Binary
@@ -141,15 +135,55 @@ If you trust us (and you should not.. trust.. anybody.. EVER), then you can also
 
 ## Usage
 
-All of the usage instructions can be found by running `binName --help`. After running the command, you should be greeted with the following output:
+All of the usage instructions can be found by running `task-dash --help`. After running the command, you should be greeted with the following output:
 
 ```
-help_menu_output
+Usage: task [-ilfwvsd] [--init] [--list] [--force] [--watch] [--verbose] [--silent] [--dir] [--taskfile] [--dry] [--summary] [task...]
+
+Runs the specified task(s). Falls back to the "default" task if no task name
+was specified, or lists all tasks if an unknown task name was specified.
+
+Example: 'task hello' with the following 'Taskfile.yml' file will generate an
+'output.txt' file with the content "hello".
+
+'''
+version: '3'
+tasks:
+  hello:
+    cmds:
+      - echo "I am going to write a file named 'output.txt' now."
+      - echo "hello" > output.txt
+    generates:
+      - output.txt
+'''
+
+Options:
+  -c, --color                       colored output. Enabled by default. Set flag to false or use NO_COLOR=1 to disable (default true)
+  -C, --concurrency int             limit number tasks to run concurrently
+  -d, --dir string                  sets directory of execution
+  -n, --dry                         compiles and prints tasks in the order that they would be run, without executing them
+  -x, --exit-code                   pass-through the exit code of the task command
+  -f, --force                       forces execution even when the task is up-to-date
+  -h, --help                        shows Task usage
+  -i, --init                        creates a new Taskfile.yaml in the current folder
+  -l, --list                        lists tasks with description of current Taskfile
+  -a, --list-all                    lists tasks with or without a description
+  -o, --output string               sets output style: [interleaved|group|prefixed]
+      --output-group-begin string   message template to print before a task's grouped output
+      --output-group-end string     message template to print after a task's grouped output
+  -p, --parallel                    executes tasks provided on command line in parallel
+  -s, --silent                      disables echoing
+      --status                      exits with non-zero exit code if any of the given tasks is not up-to-date
+      --summary                     show summary about a task
+  -t, --taskfile string             choose which Taskfile to run. Defaults to "Taskfile.yml"
+  -v, --verbose                     enables verbose mode
+      --version                     show Task version
+  -w, --watch                       enables watch of the given task
 ```
 
 ### Man Page
 
-Alternatively, if you installed the package via NPM or an installer that set up the man page (e.g. `.deb` or `.rpm`), then you can find usage instructions by running `man binName`.
+Alternatively, if you installed the package via NPM or an installer that set up the man page (e.g. `.deb` or `.rpm`), then you can find usage instructions by running `man task-dash`.
 
 <a href="#contributing" style="width:100%"><img style="width:100%" src="https://gitlab.com/megabyte-labs/assets/-/raw/master/png/aqua-divider.png" /></a>
 

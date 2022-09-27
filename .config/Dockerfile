@@ -1,6 +1,6 @@
 FROM scratch AS binary
 
-ENTRYPOINT ["/"]
+ENTRYPOINT ["/task-dash"]
 CMD ["--version"]
 
-COPY  /
+COPY task-dash /
