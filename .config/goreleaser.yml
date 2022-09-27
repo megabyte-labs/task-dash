@@ -19,7 +19,7 @@ archives:
 #    # The AUR Git URL for this package.
 #    # Defaults to empty. TODOTODOTODO
 #    # git_url: ssh://aur@aur.archlinux.org/mypackage-bin.git
-#    homepage: https://github.com/megabyte-labs/go/cli/task-dash
+#    homepage: https://github.com/megabyte-labs/task-dash
 #    license: MIT
 #    maintainers:
 #      - Megabyte Labs <help@megabyte.space>
@@ -40,7 +40,7 @@ archives:
 #      install -Dm644 "./local/completion/zsh/.zsh" "${pkgdir}/usr/share/zsh/site-functions/_"
 #      install -Dm644 "./local/completion/fish/.fish" "${pkgdir}/usr/share/fish/vendor_completions.d/.fish"
 #      # install -Dm644 "./local/man/.1.gz" "${pkgdir}/usr/share/man/man1/.1.gz"
-#    url_template: "https://github.com/megabyte-labs/go/cli/task-dash/releases/{{ .Tag }}/{{ .ArtifactName }}"
+#    url_template: "https://github.com/megabyte-labs/task-dash/releases/{{ .Tag }}/{{ .ArtifactName }}"
 
 before:
   hooks:
@@ -49,7 +49,7 @@ before:
 brews:
   - description: A gorgeous TUI menu for go-task/task
     folder: Formula
-    homepage: https://github.com/megabyte-labs/go/cli/task-dash
+    homepage: https://github.com/megabyte-labs/task-dash
     install: |-
       bin.install ""
       bash_completion.install "local/completion/bash/.bash" => ""
@@ -114,7 +114,7 @@ nfpms:
       - apk
       - deb
       - rpm
-    homepage: https://github.com/megabyte-labs/go/cli/task-dash
+    homepage: https://github.com/megabyte-labs/task-dash
     id: default
     license: MIT
     maintainer: Megabyte Labs <help@megabyte.space>
@@ -157,12 +157,12 @@ scoop:
     name: Megabyte Labs
     email: help@megabyte.space
   commit_msg_template: 'Scoop update for {{ .ProjectName }} version {{ .Tag }}'
-  homepage: https://github.com/megabyte-labs/go/cli/task-dash
+  homepage: https://github.com/megabyte-labs/task-dash
   description: A gorgeous TUI menu for go-task/task
   license: MIT
   pre_install: ["Write-Host 'Beginning the installation..'"]
   post_install: ["Write-Host 'Installation complete!'"]
-  url_template: 'https://github.com/megabyte-labs/go/cli/task-dash/releases/{{ .Tag }}/{{ .ArtifactName }}'
+  url_template: 'https://github.com/megabyte-labs/task-dash/releases/{{ .Tag }}/{{ .ArtifactName }}'
 
 # eslint-disable max-len
 snapcrafts:

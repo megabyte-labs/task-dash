@@ -1,6 +1,6 @@
 <!-- ⚠️ This README has been generated from the file(s) ".config/docs/blueprint-readme-cli.md" ⚠️--><div align="center">
   <center>
-    <a href="https://github.com/megabyte-labs/go/cli/task-dash">
+    <a href="https://github.com/megabyte-labs/task-dash">
       <img width="148" height="148" alt="Task Dash logo" src="https://gitlab.com/megabyte-labs/go/cli/task-dash/-/raw/master/logo.png" />
     </a>
   </center>
@@ -14,7 +14,7 @@
   <a href="https://megabyte.space" title="Megabyte Labs homepage" target="_blank">
     <img alt="Homepage" src="https://img.shields.io/website?down_color=%23FF4136&down_message=Down&label=Homepage&logo=home-assistant&logoColor=white&up_color=%232ECC40&up_message=Up&url=https%3A%2F%2Fmegabyte.space&style=for-the-badge" />
   </a>
-  <a href="https://github.com/megabyte-labs/go/cli/task-dash/blob/master/docs/CONTRIBUTING.md" title="Learn about contributing" target="_blank">
+  <a href="https://github.com/megabyte-labs/task-dash/blob/master/docs/CONTRIBUTING.md" title="Learn about contributing" target="_blank">
     <img alt="Contributing" src="https://img.shields.io/badge/Contributing-Guide-0074D9?logo=github-sponsors&logoColor=white&style=for-the-badge" />
   </a>
   <a href="https://app.slack.com/client/T01ABCG4NK1/C01NN74H0LW/details/" title="Chat with us on Slack" target="_blank">
@@ -23,7 +23,7 @@
   <a href="link.gitter" title="Chat with the community on Gitter" target="_blank">
     <img alt="Gitter" src="https://img.shields.io/gitter/room/megabyte-labs/community?logo=gitter&logoColor=white&style=for-the-badge" />
   </a>
-  <a href="https://github.com/megabyte-labs/go/cli/task-dash" title="GitHub mirror" target="_blank">
+  <a href="https://github.com/megabyte-labs/task-dash" title="GitHub mirror" target="_blank">
     <img alt="GitHub" src="https://img.shields.io/badge/Mirror-GitHub-333333?logo=github&style=for-the-badge" />
   </a>
   <a href="https://gitlab.com/megabyte-labs/go/cli/task-dash" title="GitLab repository" target="_blank">
@@ -32,10 +32,10 @@
 </div>
 <br/>
 <div align="center">
-  <a title="Version: 0.0.1" href="https://github.com/megabyte-labs/go/cli/task-dash" target="_blank">
+  <a title="Version: 0.0.1" href="https://github.com/megabyte-labs/task-dash" target="_blank">
     <img alt="Version: 0.0.1" src="https://img.shields.io/badge/version-0.0.1-blue.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAACNJREFUCNdjIACY//+BEp9hhM3hAzYQwoBIAqEDYQrCZLwAAGlFKxU1nF9cAAAAAElFTkSuQmCC&cacheSeconds=2592000&style=flat-square" />
   </a>
-  <a title="Go version: goVersion" href="https://github.com/megabyte-labs/go/cli/task-dash/blob/master/go.mod" target="_blank">
+  <a title="Go version: goVersion" href="https://github.com/megabyte-labs/task-dash/blob/master/go.mod" target="_blank">
     <img alt="Go version: goVersion" src="https://img.shields.io/github/go-mod/go-version/profile.github}}/{{slug?logo=go&logoColor=white&style=flat-square">
   </a>
   <a title="GitLab build status" href="https://gitlab.com/megabyte-labs/go/cli/task-dash/-/commits/master" target="_blank">
@@ -44,7 +44,7 @@
   <a title="Documentation" href="https://megabyte.space/docs/go" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg?logo=readthedocs&style=flat-square" />
   </a>
-  <a title="License: MIT" href="https://github.com/megabyte-labs/go/cli/task-dash/blob/master/LICENSE" target="_blank">
+  <a title="License: MIT" href="https://github.com/megabyte-labs/task-dash/blob/master/LICENSE" target="_blank">
     <img alt="License: MIT" src="https://img.shields.io/badge/license-MIT-yellow.svg?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAAHpJREFUCNdjYOD/wMDAUP+PgYHxhzwDA/MB5gMM7AwMDxj4GBgKGGQYGCyAEEgbMDDwAAWAwmk8958xpIOI5zKH2RmOyhxmZjguAiKmgIgtQOIYmFgCIp4AlaQ9OczGkJYCJEAGgI0CGwo2HmwR2Eqw5SBnNIAdBHYaAJb6KLM15W/CAAAAAElFTkSuQmCC&style=flat-square" />
   </a>
 </div>
@@ -117,7 +117,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManage
 You can install the CLI by compiling it from the source as long as you have a recent version of Go installed:
 
 ```
-git clone https://github.com/megabyte-labs/go/cli/task-dash.git
+git clone https://github.com/megabyte-labs/task-dash.git
 cd {{#withLast (split repository.github "/")}}this}}{{/withLast
 build_command
 sudo mv build_command_output /usr/local/bin
@@ -155,7 +155,7 @@ Alternatively, if you installed the package via NPM or an installer that set up 
 
 ## Contributing
 
-Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/megabyte-labs/go/cli/task-dash/issues). If you would like to contribute, please take a look at the [contributing guide](https://github.com/megabyte-labs/go/cli/task-dash/blob/master/docs/CONTRIBUTING.md).
+Contributions, issues, and feature requests are welcome! Feel free to check the [issues page](https://github.com/megabyte-labs/task-dash/issues). If you would like to contribute, please take a look at the [contributing guide](https://github.com/megabyte-labs/task-dash/blob/master/docs/CONTRIBUTING.md).
 
 <details>
 <summary><b>Sponsorship</b></summary>

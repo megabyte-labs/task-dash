@@ -16,7 +16,7 @@
 #   curl -sSL https://raw.githubusercontent.com/megabyte-labs/task-dash/master/local/install.sh | sh
 #   ```
 
-RELEASES_URL="https://github.com/megabyte-labs/go/cli/task-dash/releases"
+RELEASES_URL="https://github.com/megabyte-labs/task-dash/releases"
 
 downloadJSON() {
     url="$2"

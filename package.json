@@ -8,7 +8,7 @@
   "homepage": "https://megabyte.space",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/megabyte-labs/go/cli/task-dash.git"
+    "url": "git+https://github.com/megabyte-labs/task-dash.git"
   },
   "bugs": {
     "email": "help@megabyte.space",
@@ -88,7 +88,7 @@
     "name": "Task Dash",
     "overview": "Task Dash is a gorgeous manager for user defined scripts. It works well together with go-task since it reads data in the Taskfile.yml format. With Task Dash, you can make it super easy for your developers to browse through, read about, and execute your project's tasks. It combines several elements from the [Charm Bracelet](https://github.com/charmbracelet) TUI libraries. It bundles together features like:\n\n* An interactive task selector\n* Ability to search for a particular task\n* A styled terminal program for viewing markdown files.\n\nWith Task Dash, you can bundle documentation and scripts into an interactive way for developers to get started as quickly as possible.",
     "repository": {
-      "github": "https://github.com/megabyte-labs/go/cli/task-dash",
+      "github": "https://github.com/megabyte-labs/task-dash",
       "gitlab": "https://gitlab.com/megabyte-labs/go/cli/task-dash"
     },
     "slug": "task-dash",
@@ -130,7 +130,7 @@
   "goBinary": {
     "name": "",
     "path": "./bin",
-    "url": "https://github.com/megabyte-labs/go/cli/task-dash/releases/download/v0.0.1/Task-Dash-0.0.1-{{platform}}-{{arch}}.tar.gz"
+    "url": "https://github.com/megabyte-labs/task-dash/releases/download/v0.0.1/Task-Dash-0.0.1-{{platform}}-{{arch}}.tar.gz"
   },
   "jscpd": {
     "gitignore": true,
