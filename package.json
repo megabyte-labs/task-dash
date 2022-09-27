@@ -75,7 +75,7 @@
     "node": ">=14.18.0"
   },
   "publishConfig": {
-    "@gitlab:registry": "https://gitlab.com/api/v4/projects//packages/npm/",
+    "@gitlab:registry": "https://gitlab.com/api/v4/projects/39738731/packages/npm/",
     "@megabyte:registry": "https://gitlab.com/api/v4/projects/29528131/packages/npm/",
     "access": "public",
     "registry": "https://registry.npmjs.org/",
@@ -84,6 +84,9 @@
   "blueprint": {
     "customPackageName": "go-cli-template",
     "description": "A gorgeous TUI menu for go-task/task",
+    "github_id": "R_kgDOIEwA3A",
+    "gitlab_group_id": "14342540",
+    "gitlab_project_id": "39738731",
     "group": "go",
     "name": "Task Dash",
     "overview": "Task Dash is a gorgeous manager for user defined scripts. It works well together with go-task since it reads data in the Taskfile.yml format. With Task Dash, you can make it super easy for your developers to browse through, read about, and execute your project's tasks. It combines several elements from the [Charm Bracelet](https://github.com/charmbracelet) TUI libraries. It bundles together features like:\n\n* An interactive task selector\n* Ability to search for a particular task\n* A styled terminal program for viewing markdown files.\n\nWith Task Dash, you can bundle documentation and scripts into an interactive way for developers to get started as quickly as possible.",
@@ -93,10 +96,7 @@
     },
     "slug": "task-dash",
     "subgroup": "cli",
-    "title": "Task Dash - A TUI for Scripts",
-    "github_id": "R_kgDOIEwA3A",
-    "gitlab_project_id": "39738731",
-    "gitlab_group_id": "14342540"
+    "title": "Task Dash - A TUI for Scripts"
   },
   "changelog": {
     "displayTypes": [
