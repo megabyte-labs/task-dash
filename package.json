@@ -82,7 +82,12 @@
     "tag": "edge"
   },
   "blueprint": {
-    "customPackageName": "go-cli-template",
+    "binName": "task-dash",
+    "buildMain": "./cmd/task",
+    "build_command": "go build -o dist/task cmd/task/task.go",
+    "build_command_output": "./dist/task",
+    "currentBuildTag": "v3.9.2",
+    "customPackageName": "task-dash",
     "description": "A gorgeous TUI menu for go-task/task",
     "github_id": "R_kgDOIEwA3A",
     "gitlab_group_id": "14342540",
@@ -96,6 +101,7 @@
     },
     "slug": "task-dash",
     "subgroup": "cli",
+    "subheaderDescription": "A gorgeous TUI menu for [go-task/task](https://github.com/go-task/task)",
     "title": "Task Dash - A TUI for Scripts"
   },
   "changelog": {
