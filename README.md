@@ -168,6 +168,7 @@ Options:
   -i, --init                        creates a new Taskfile.yaml in the current folder
   -l, --list                        lists tasks with description of current Taskfile
   -a, --list-all                    lists tasks with or without a description
+      --menu                        show menu
   -o, --output string               sets output style: [interleaved|group|prefixed]
       --output-group-begin string   message template to print before a task's grouped output
       --output-group-end string     message template to print after a task's grouped output
