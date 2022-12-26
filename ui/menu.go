@@ -5,16 +5,17 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/go-task/task/v3"
 	"github.com/go-task/task/v3/taskfile"
+	"github.com/go-task/task/v3/ui/list"
 )
 
 type Item struct {
 	Name    string
 	Desc    string
 	Summary string
+	DocType list.DocType
 }
 
 func (i Item) FilterValue() string {
@@ -37,6 +38,10 @@ func (i Item) GetName() string {
 	return i.Name
 }
 
+func (i Item) GetDocType() list.DocType {
+	return i.DocType
+}
+
 func Menu(e *task.Executor, ctx context.Context) {
 	items := make([]list.Item, 0, len(e.TasksWithDesc()))
 
@@ -45,23 +50,42 @@ func Menu(e *task.Executor, ctx context.Context) {
 			Name:    task.Name(),
 			Desc:    task.Desc,
 			Summary: task.Summary,
+			DocType: list.TaskDoc,
 		})
 	}
 
-	var cfg Config
-	cfg.GlamourEnabled = true
-	cfg.HighPerformancePager = true
-	cfg.GlamourStyle = "auto"
-	cfg.DocumentTypes = NewDocTypeSet()
-	cfg.DocumentTypes.Add(LocalDoc)
+	bookmarkTasks, err := parseBookmark(e)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
 
+	for _, task := range bookmarkTasks.Bookmarked {
+		if task.Desc != "" {
+			items = append(items, Item{
+				Name:    task.Name(),
+				Desc:    task.Desc,
+				Summary: task.Summary,
+				DocType: list.BookmarkDoc,
+			})
+		}
+	}
+
+	var cfg Config
 	cfg.Logfile = "debug.log"
-	_, err := tea.LogToFile(cfg.Logfile, "glow")
+	_, err = tea.LogToFile(cfg.Logfile, "glow")
 	if err != nil {
 		log.Println(err)
 	}
 
-	log.Println("starting: ")
+	cfg.GlamourEnabled = true
+	cfg.HighPerformancePager = true
+	cfg.GlamourStyle = "auto"
+	cfg.DocumentTypes = NewDocTypeSet()
+	cfg.DocumentTypesList = list.NewDocTypeSet()
+	cfg.DocumentTypes.Add(DocType(LocalDoc))
+
+	log.Println("\n\n\nstarting... ")
 
 	// channel to receive task
 	channel := make(chan string, 1)

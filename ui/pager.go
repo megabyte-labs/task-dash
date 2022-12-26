@@ -130,8 +130,7 @@ type pagerModel struct {
 	// it here so we can re-render it on resize.
 	currentDocument markdown
 
-	// task-dash use case
-	currentSummary Markdown
+	currentSummary Summary
 
 	// Newly stashed markdown. We store it here temporarily so we can replace
 	// currentDocument above after a stash.

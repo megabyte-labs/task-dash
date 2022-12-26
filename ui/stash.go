@@ -1225,7 +1225,7 @@ func (m stashModel) view() string {
 			help,
 		)
 	}
-	return "\n" + indent(s, stashIndent)
+	return "\n" + indent(s, 6)
 }
 
 func glowLogoView(text string) string {

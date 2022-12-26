@@ -9,12 +9,12 @@ import (
 	"strings"
 	"time"
 
-	"github.com/charmbracelet/bubbles/list"
 	tea "github.com/charmbracelet/bubbletea"
 	"github.com/charmbracelet/charm"
 	"github.com/charmbracelet/charm/keygen"
 	"github.com/charmbracelet/glow/utils"
 	"github.com/charmbracelet/lipgloss"
+	"github.com/go-task/task/v3/ui/list"
 	"github.com/muesli/gitcha"
 	te "github.com/muesli/termenv"
 	"github.com/segmentio/ksuid"
@@ -174,13 +174,12 @@ type model struct {
 
 	// Sub-models
 	stash stashModel
-	pager pagerModel // modified by task-dash
+	pager pagerModel
 
 	// Channel that receives paths to local markdown files
 	// (via the github.com/muesli/gitcha package)
 	localFileFinder chan gitcha.SearchResult
 
-	// task-dash use case
 	list    list.Model
 	channel chan<- string
 }
@@ -215,6 +214,10 @@ func newModel(cfg Config, channel chan<- string, items []list.Item) tea.Model {
 
 	if len(cfg.DocumentTypes) == 0 {
 		cfg.DocumentTypes.Add(LocalDoc, StashedDoc, ConvertedDoc, NewsDoc)
+	}
+
+	if len(cfg.DocumentTypesList) == 0 {
+		cfg.DocumentTypesList.Add(list.LocalDoc, list.TaskDoc, list.BookmarkDoc, list.DocsDoc, list.NewsDoc)
 	}
 
 	common := commonModel{
@@ -321,7 +324,6 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			close(m.channel)
 			return m, tea.Quit
 
-		// task-dash use case
 		// press 'r' to run selected task
 		case "r":
 			item := m.list.SelectedItem()
@@ -330,15 +332,11 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			close(m.channel)
 			return m, tea.Quit
 
-		// task-dash use case
 		// press 'space' to open task summary
 		case " ":
 			log.Println("opening task summary")
 			i := m.list.SelectedItem().(Item)
-			md := Markdown{
-				markdown: markdown{
-					docType: SummaryDoc,
-				},
+			md := Summary{
 				Body: i.GetSummary(),
 			}
 			cmds = append(cmds, m.stash.openSummaryMarkdown(&md))
@@ -410,7 +408,6 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		msg.Body = string(utils.RemoveFrontmatter([]byte(msg.Body)))
 		cmds = append(cmds, renderWithGlamour(m.pager, msg.Body))
 
-	// task-dash use case
 	case fetchedMarkdownSmrMsg:
 		log.Println("case fetchedMarkdownSmrMsg")
 		m.pager.currentSummary = *msg
@@ -490,11 +487,13 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		// newStashModel, cmd := m.stash.update(msg)
 		// m.stash = newStashModel
 		// cmds = append(cmds, cmd)
+		log.Println("494 Update stateShowStash")
 		newListModel, cmd := m.list.Update(msg)
 		m.list = newListModel
 		cmds = append(cmds, cmd)
-
+		
 	case stateShowDocument:
+		log.Println("500 Update stateShowDocument")
 		newPagerModel, cmd := m.pager.update(msg)
 		m.pager = newPagerModel
 		cmds = append(cmds, cmd)
@@ -513,10 +512,12 @@ func (m model) View() string {
 
 	switch m.state {
 	case stateShowDocument:
+		log.Println("517 stateShowDocument")
 		return m.pager.View()
 	default:
-		return docStyle.Render(m.list.View())
-		// return m.list.View()
+		log.Println("522 m.list.View")
+		// return docStyle.Render(m.list.View())
+		return m.list.View()
 		// return m.stash.view()
 	}
 }

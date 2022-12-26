@@ -1,5 +1,7 @@
 package ui
 
+import "github.com/go-task/task/v3/ui/list"
+
 // Config contains TUI-specific configuration.
 type Config struct {
 	ShowAllFiles    bool
@@ -13,7 +15,8 @@ type Config struct {
 	WorkingDirectory string
 
 	// Which document types shall we show?
-	DocumentTypes DocTypeSet
+	DocumentTypes     DocTypeSet
+	DocumentTypesList list.DocTypeSet
 
 	// For debugging the UI
 	Logfile              string `env:"GLOW_LOGFILE"`
