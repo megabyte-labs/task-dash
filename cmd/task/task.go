@@ -16,6 +16,7 @@ import (
 	"github.com/go-task/task/v3/args"
 	"github.com/go-task/task/v3/internal/logger"
 	"github.com/go-task/task/v3/taskfile"
+	"github.com/go-task/task/v3/ui"
 )
 
 var version = ""
@@ -71,6 +72,7 @@ func main() {
 		entrypoint  string
 		output      taskfile.Output
 		color       bool
+		menu        bool
 	)
 
 	pflag.BoolVar(&versionFlag, "version", false, "show Task version")
@@ -94,6 +96,7 @@ func main() {
 	pflag.StringVar(&output.Group.End, "output-group-end", "", "message template to print after a task's grouped output")
 	pflag.BoolVarP(&color, "color", "c", true, "colored output. Enabled by default. Set flag to false or use NO_COLOR=1 to disable")
 	pflag.IntVarP(&concurrency, "concurrency", "C", 0, "limit number tasks to run concurrently")
+	pflag.BoolVar(&menu, "menu", false, "show menu")
 	pflag.Parse()
 
 	if versionFlag {
@@ -205,6 +208,11 @@ func main() {
 	}
 
 	ctx := context.Background()
+
+	if menu {
+		ui.Menu(&e, ctx)
+		return
+	}
 
 	if status {
 		if err := e.Status(ctx, calls...); err != nil {
