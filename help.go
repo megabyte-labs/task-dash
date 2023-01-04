@@ -58,6 +58,11 @@ func (e *Executor) allTaskNames() (tasks []*taskfile.Task) {
 	return
 }
 
+// TasksWithDesc return all tasks with description.
+func (e *Executor) TasksWithDesc() []*taskfile.Task {
+	return e.tasksWithDesc()
+}
+
 func (e *Executor) tasksWithDesc() (tasks []*taskfile.Task) {
 	tasks = make([]*taskfile.Task, 0, len(e.Taskfile.Tasks))
 	for _, task := range e.Taskfile.Tasks {
