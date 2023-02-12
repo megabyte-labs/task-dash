@@ -324,8 +324,8 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 			close(m.channel)
 			return m, tea.Quit
 
-		// press 'r' to run selected task
-		case "r":
+		// press 'r' or 'enter' to run selected task
+		case "r", "enter":
 			item := m.list.SelectedItem()
 			log.Println("execute:", item.FilterValue())
 			m.channel <- item.FilterValue()
