@@ -112,7 +112,7 @@ You can install the CLI by compiling it from the source as long as you have a re
 
 ```
 git clone https://github.com/megabyte-labs/task-dash.git
-cd {{#withLast (split repository.github "/")}}this}}{{/withLast
+cd {{#withLast (split repository.github "/")}}this/withLast
 go build -o dist/task cmd/task/task.go
 sudo mv ./dist/task /usr/local/bin
 ```
@@ -168,6 +168,7 @@ Options:
   -i, --init                        creates a new Taskfile.yaml in the current folder
   -l, --list                        lists tasks with description of current Taskfile
   -a, --list-all                    lists tasks with or without a description
+      --menu                        show menu
   -o, --output string               sets output style: [interleaved|group|prefixed]
       --output-group-begin string   message template to print before a task's grouped output
       --output-group-end string     message template to print after a task's grouped output
