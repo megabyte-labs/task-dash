@@ -49,7 +49,7 @@
   </a>
 </div>
 
-> </br><h4 align="center">**A gorgeous TUI menu for [go-task/task](https://github.com/go-task/task)**</h4></br>
+> <br/><h4 align="center">**A gorgeous TUI menu for [go-task/task](https://github.com/go-task/task)**</h4><br/>
 
 <!--TERMINALIZE![terminalizer_title](https://gitlab.com/megabyte-labs/go/cli/task-dash/-/raw/master/docs/demo.gif)TERMINALIZE-->
 
